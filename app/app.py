@@ -13,11 +13,12 @@ def hello_world():
         return render_template('index.html', href2='')
     else:
         myage = request.form['age']
-        mygender = request.form['gender']
-        model = load('app/bread-recommender.joblib')
-        np_arr = np.array([myage, mygender])
+        myeng = request.form['eng']
+        mymath = request.form['math']
+        model = load('app/examgrade.joblib')
+        np_arr = np.array([myage, mymath,myeng])
         predictions = model.predict([np_arr])  
         predictions_to_str = str(predictions)
         #return predictions_to_str
-        return render_template('index.html', href2='The suitable bread for you (age:'+str(myage)+' ,gender:'+str(mygender)+') is:'+predictions_to_str)
+        return render_template('index.html', href2='The suitable grade for you (age:'+str(myage)+' ,math:'+str(mymath)+' ,eng:'+str(myeng)+') is:'+predictions_to_str)
 
